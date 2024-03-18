@@ -18,10 +18,6 @@
   border-color: #7c34c8;
 }
 
-:host /deep/ .ngx-pagination {
-  padding-left: 0px;
-}
-
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: #7c34c8;
   color: white;
