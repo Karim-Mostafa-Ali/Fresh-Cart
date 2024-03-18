@@ -1,0 +1,62 @@
+<section class="my-5">
+  <div
+    class="product-details bg-white w-75 mx-auto"
+    *ngIf="wishdata.count != 0"
+  >
+    <div class="product-body py-4">
+      <div>
+        <h1 class="pb-3 text-center">WishList</h1>
+      </div>
+
+      <div
+        class="row align-items-center my-2 border-bottom py-3"
+        *ngFor="let wishproduct of wishProducts"
+      >
+        <div class="col-md-2">
+          <img
+            [src]="wishproduct.imageCover"
+            [alt]=""
+            class="w-100 rounded-2 overflow-hidden mb-2"
+            height="150"
+          />
+        </div>
+        <div class="col-md-10">
+          <div class="row flex-wrap justify-content-between align-items-center">
+            <div>
+              <p class="h5">{{ wishproduct.title }}</p>
+              <p class="h5 py-2">
+                Price : {{ wishproduct.price | currency : "EGP " }}
+              </p>
+              <div
+                class="d-flex justify-content-between align-items-baseline flex-wrap"
+              >
+                <button
+                  #btnAdd
+                  class="btn-sec px-2 d-block"
+                  (click)="addCart(wishproduct._id, btnAdd)"
+                >
+                  Add Product
+                </button>
+                <button
+                  #removebtn
+                  class="btn-danger btn"
+                  (click)="removeWish(wishproduct._id, removebtn)"
+                >
+                  <i class="fa-solid fa-trash pe-2"></i> Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="product-details bg-white w-75 mx-auto"
+    *ngIf="wishdata.count == 0"
+  >
+    <div class="product-body py-4">
+      <h1 class="text-center">Your Wishlist is Empty ....</h1>
+    </div>
+  </div>
+</section>

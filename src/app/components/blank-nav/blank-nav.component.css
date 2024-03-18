@@ -1,0 +1,55 @@
+#navlinks li {
+  padding-inline: 6px;
+  font-size: 18px;
+}
+
+.iconslinks li,
+.iconslinks a {
+  padding-inline: 4px;
+}
+
+.navbuttons span:hover {
+  filter: brightness(200%);
+}
+
+.navbuttons span {
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 992px) {
+  .iconslinks {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .iconslinks li {
+    display: block !important;
+  }
+  .large-nav {
+    display: none !important;
+  }
+  .small-nav {
+    display: block;
+  }
+
+  .navbar-nav .signoutbtn {
+    display: block !important;
+  }
+}
+
+.cartnumber {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  right: 0;
+  top: 0;
+  background: linear-gradient(93.25deg, #0098ff 4.45%, #7c34c8 93.88%);
+}
+
+.wishnumber {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  right: 0;
+  top: 0;
+}

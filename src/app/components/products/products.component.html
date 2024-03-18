@@ -1,0 +1,97 @@
+<section class="pb-5 pt-4 px-2 pb-3">
+  <div class="d-flex justify-content-between align-items-center pb-3 flex-wrap">
+    <div>
+      <h2>All Products</h2>
+    </div>
+    <div class="form-group">
+      <input
+        name="email"
+        id="email"
+        type="search"
+        placeholder="Search Products.."
+        [(ngModel)]="searchterm"
+      />
+    </div>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <div
+      class="col-md-2"
+      *ngFor="
+        let product of products
+          | paginate
+            : {
+                id: 'productPaginate',
+                itemsPerPage: pageSize,
+                currentPage: p,
+                totalItems: total
+              }
+          | search : searchterm
+      "
+    >
+      <div>
+        <div class="product bg-white">
+          <div class="product-body">
+            <div
+              [routerLink]="['/details', product._id]"
+              class="cursor-pointer"
+            >
+              <img
+                [src]="product.imageCover"
+                class="w-100"
+                [alt]="product.title"
+              />
+              <h3 class="h6 pt-2">{{ product.category.name }}</h3>
+              <h4 class="h6">
+                {{ product.title | termtext : 2 }}
+              </h4>
+              <div class="d-flex justify-content-between align-items-center">
+                <span>{{ product.price | currency : "EGP " }}</span>
+                <div>
+                  <i class="fas fa-star rating-color pe-1"></i>
+                  <span>{{ product.ratingsAverage }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-between">
+              <button
+                #btnAdd
+                class="btn-sec px-2 mt-2 d-block w-100 me-4"
+                (click)="addCart(product._id, btnAdd)"
+              >
+                Add Product
+              </button>
+              <i
+                *ngIf="!wishListData.includes(product._id)"
+                (click)="addWish(product._id)"
+                class="fa-regular fa-heart wish fs-3 d-block cursor-pointer"
+              ></i>
+              <i
+                *ngIf="wishListData.includes(product._id)"
+                #removebtn
+                (click)="removeWish(product._id, removebtn)"
+                class="fa-solid fa-heart remove-wish fs-3 d-block text-danger cursor-pointer"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination-controls
+      class="text-center my-pagination"
+      id="productPaginate"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+  </div>
+</section>

@@ -1,0 +1,92 @@
+<section>
+  <div class="form-container my-3">
+    <h1>Login Now</h1>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="handleform()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          required
+          formControlName="email"
+          name="email"
+          #email
+          id="email"
+          type="text"
+          [class.invalid]="
+            loginForm.get('email')?.errors &&
+            (loginForm.get('email')?.touched || email.value.length > 0)
+          "
+        />
+        <div
+          *ngIf="
+            loginForm.get('email')?.errors &&
+            (loginForm.get('email')?.touched || email.value.length > 0)
+          "
+        >
+          <p
+            *ngIf="loginForm.get('email')?.getError('required')"
+            class="text-danger fs-6"
+          >
+            Email is Required.
+          </p>
+          <p
+            *ngIf="loginForm.get('email')?.getError('email')"
+            class="text-danger fs-6"
+          >
+            Email is not valid.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="d-flex justify-content-between align-items-center">
+          <label class="w-50" for="password">Password</label>
+
+          <a routerLink="/ForgotPassword">forgot Password ?</a>
+        </div>
+        <input
+          required
+          formControlName="password"
+          name="password"
+          id="password"
+          #password
+          type="password"
+          [class.invalid]="
+            loginForm.get('password')?.errors &&
+            (loginForm.get('password')?.touched || password.value.length > 0)
+          "
+        />
+
+        <div
+          *ngIf="
+            loginForm.get('password')?.errors &&
+            (loginForm.get('password')?.touched || password.value.length > 0)
+          "
+        >
+          <p
+            *ngIf="loginForm.get('password')?.getError('required')"
+            class="text-danger fs-6"
+          >
+            Password is Required.
+          </p>
+          <p
+            *ngIf="loginForm.get('password')?.getError('pattern')"
+            class="text-danger fs-6"
+          >
+            password must start with upperCase then from 6 to 10 characters.
+          </p>
+        </div>
+      </div>
+      <button
+        [disabled]="loginForm.invalid"
+        type="submit"
+        class="btn-main d-block ms-auto"
+      >
+        <i *ngIf="isLoading" class="fas fa-spin fa-spinner"></i>
+        Login
+      </button>
+      <p *ngIf="msgError" class="text-danger text-center fs-4">
+        {{ msgError }}
+      </p>
+    </form>
+  </div>
+</section>

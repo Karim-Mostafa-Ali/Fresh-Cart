@@ -1,0 +1,23 @@
+<section class="my-5">
+  <div class="row g-4 container mx-auto">
+    <div class="col-md-3" *ngFor="let brand of brands">
+      <div>
+        <div class="product bg-white">
+          <div class="product-body">
+            <div [routerLink]="['/brands', brand._id]" class="cursor-pointer">
+              <img
+                [src]="brand.image"
+                class="w-100"
+                [alt]="brand.name"
+                height="270px"
+              />
+              <h3 class="h6 pt-2 text-center border-top mt-2">
+                {{ brand.name }}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

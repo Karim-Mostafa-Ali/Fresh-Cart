@@ -1,0 +1,38 @@
+#navlinks li {
+  padding-inline: 6px;
+  font-size: 18px;
+}
+
+.iconslinks li,
+.iconslinks a {
+  padding-inline: 4px;
+}
+
+.navbuttons a:hover {
+  filter: brightness(200%);
+}
+
+.navbuttons a {
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  transition: all ease-out 0.5s;
+}
+
+@media only screen and (max-width: 992px) {
+  .navbuttons {
+    order: 0;
+  }
+
+  .large-nav {
+    display: none;
+  }
+
+  .small-nav {
+    display: block !important;
+  }
+
+  .icons-div {
+    display: flex !important;
+    justify-content: space-between;
+  }
+}

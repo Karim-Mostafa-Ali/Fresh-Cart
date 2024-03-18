@@ -1,0 +1,51 @@
+<section class="my-5">
+  <div class="product-details bg-white w-75 mx-auto">
+    <div class="product-body py-4 row align-items-center">
+      <div class="col-md-4">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let slide of productDetails.images">
+            <ng-template carouselSlide>
+              <img
+                [src]="slide"
+                [alt]=""
+                class="w-100 rounded-2 overflow-hidden"
+              />
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+      <div class="col-md-8">
+        <h2 class="pt-2">{{ productDetails.title }}</h2>
+        <p class="text-sec">{{ productDetails.description }}</p>
+        <h3 class="h5">{{ productName }}</h3>
+        <div class="d-flex justify-content-between align-items-center">
+          <span>{{ productDetails.price | currency }}</span>
+          <div>
+            <i class="fas fa-star rating-color pe-1"></i>
+            <span>{{ productDetails.ratingsAverage }}</span>
+          </div>
+        </div>
+        <div class="d-flex align-items-baseline justify-content-between">
+          <button
+            #btnAdd
+            (click)="addCart(productDetails._id, btnAdd)"
+            class="btn-sec px-2 mt-2 d-block w-100 me-4"
+          >
+            Add Product
+          </button>
+          <i
+            *ngIf="!wishListData.includes(productDetails._id)"
+            (click)="addWish(productDetails._id)"
+            class="fa-regular fa-heart wish fs-3 d-block cursor-pointer"
+          ></i>
+          <i
+            *ngIf="wishListData.includes(productDetails._id)"
+            #removebtn
+            (click)="removeWish(productDetails._id, removebtn)"
+            class="fa-solid fa-heart remove-wish fs-3 d-block text-danger cursor-pointer"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

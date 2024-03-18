@@ -1,0 +1,24 @@
+<section class="my-5">
+  <div class="product-details bg-white w-75 mx-auto">
+    <div class="product-body py-4 row align-items-center">
+      <div class="col-md-4">
+        <img
+          [src]="BrandDetails.image"
+          class="w-100"
+          [alt]="BrandDetails.name"
+          height="270px"
+        />
+      </div>
+      <div class="col-md-8">
+        <h2 class="mt-2">
+          <span class="text-gradient"> Brand Name :</span>
+          {{ BrandDetails.name }}
+        </h2>
+        <h2 class="mt-2">
+          <span class="text-gradient"> Slug Name :</span>
+          {{ BrandDetails.slug }}
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
